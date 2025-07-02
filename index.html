@@ -5,15 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Satellite Flyover Notifier</title>
     <link href="Style1.css" rel="stylesheet" />
+    <link href="Custom.css" rel="stylesheet"/>
   </head>
   <body>
     <div>
       <h2 id="title">🛰️ Satellite Flyover Notifier 🛰️</h2>
-      <hr style="width: 95%; height: 0.5px; background-color: gray;">
+      <hr style="width: 95%; height: 0.5px; background-color: gray" />
     </div>
     <!-- Displaying flex for the parent div to organize its flex elements (the children) -->
-    <div style="display: flex; justify-content: center;">  
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 2rem;
+      "
+    >
       <button class="LocationBttn">📍Use My Location</button>
+      <div class="inputBox">
+        <input required="" type="text" placeholder="Write here..." />
+        <span>First name :</span>
+      </div>
     </div>
   </body>
 </html>
