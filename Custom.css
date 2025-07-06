@@ -1,11 +1,15 @@
-/* From Uiverse.io by saidbl1 */ 
+/* From Uiverse.io by saidbl1 */
 .inputBox {
   position: relative;
 }
 
+.inputBox1 {
+  position: relative;
+}
+
 .inputBox input {
-  padding: 15px 20px;
-  outline: none;
+  padding: 15px 6px;
+  outline: inset;
   background: transparent;
   border-radius: 5px;
   color: #000000;
@@ -24,4 +28,35 @@
   letter-spacing: 1px;
   border: 1px solid #e8e8e8;
   color: #e8e8e8;
+}
+
+.inputBox ::placeholder {
+  text-align: center;
+}
+
+.inputBox1 input {
+  padding: 15px 6px;
+  outline: inset;
+  background: transparent;
+  border-radius: 5px;
+  color: #000000;
+  border: 1px solid#000000;
+  font-size: 1em;
+}
+
+.inputBox1 span {
+  position: absolute;
+  left: 0;
+  font-size: 0.9em;
+  transform: translateX(14px) translateY(-7.5px);
+  padding: 0 6px 1px 5px;
+  border-radius: 2px;
+  background: #212121;
+  letter-spacing: 1px;
+  border: 1px solid #e8e8e8;
+  color: #e8e8e8;
+}
+
+.inputBox1 ::placeholder {
+  text-align: center;
 }
