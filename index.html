@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Satellite Flyover Notifier</title>
-    <link href="Style1.css" rel="stylesheet" />
-    <link href="Custom.css" rel="stylesheet" />
+    <link href="./Styles/Custom.css" rel="stylesheet" />
+    <link href="./Styles/buttons.css" rel="stylesheet" />
+    <link href="./Styles/Style1.css" rel="stylesheet" />
   </head>
   <body>
     <div>
@@ -26,8 +27,14 @@
         margin: 3rem 20rem;
       "
     >
-    <h3>Step 1: Setup your location:</h3>
-      <button class="LocationBttn">📍Use My Location</button>
+      <h3
+        style="
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        "
+      >
+        Step 1: Setup your location:
+      </h3>
+      <button class="LocationBttn" id="LocationButtn">📍Use My Location</button>
       <h4>or</h4>
       <div
         style="
@@ -35,11 +42,12 @@
           justify-content: center;
           align-items: center;
           flex-direction: row;
-          gap: 1rem;
+          gap: 7.5rem;
         "
       >
         <div class="inputBox">
           <input
+            id="Latitude"
             required=""
             type="number"
             step="0.0001"
@@ -51,6 +59,7 @@
         </div>
         <div class="inputBox1">
           <input
+            id="Longitude"
             required=""
             type="number"
             step="0.0001"
@@ -61,6 +70,66 @@
           <span>Longitude</span>
         </div>
       </div>
+      <button type="button" class="btn">
+        <strong>Fetch Satellites</strong>
+        <div id="container-stars">
+          <div id="stars"></div>
+        </div>
+        <div id="glow">
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
+      </button>
     </div>
   </body>
 </html>
+
+<script>
+  const locationButton = document.getElementById("LocationButtn");
+  const LatitudeInput = document.getElementById("Latitude");
+  const LongitudeInput = document.getElementById("Longitude");
+  locationButton.addEventListener("click", () => {
+    // Check if Geolocation API is supported
+    if (navigator.geolocation) {
+      // Request the user's current position
+      navigator.geolocation.getCurrentPosition(
+        // Success callback
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          
+          LatitudeInput.value = latitude;
+          LongitudeInput.value = longitude;
+        },
+        // Error callback
+        (error) => {
+          let errorMessage;
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              errorMessage = "User denied the request for Geolocation.";
+              break;
+            case error.POSITION_UNAVAILABLE:
+              errorMessage = "Location information is unavailable.";
+              break;
+            case error.TIMEOUT:
+              errorMessage = "The request to get user location timed out.";
+              break;
+            default:
+              errorMessage = "An unknown error occurred.";
+          }
+          locationOutput.textContent = `Error: ${errorMessage}`;
+        },
+        // Optional settings
+        {
+          enableHighAccuracy: true, // Use GPS for better accuracy
+          timeout: 5000, 
+          maximumAge: 0, // Don't use cached position
+        }
+      );
+    } else {
+      // Geolocation not supported
+      locationOutput.textContent =
+        "Error: Geolocation is not supported by your browser.";
+    }
+  });
+</script>
