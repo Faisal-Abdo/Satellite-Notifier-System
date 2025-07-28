@@ -27,13 +27,7 @@
         margin: 3rem 20rem;
       "
     >
-      <h3
-        style="
-          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        "
-      >
-        Step 1: Setup your location:
-      </h3>
+      <h2 style="font-family: monospace">Step 1: Setup your location:</h2>
       <button class="LocationBttn" id="LocationButtn">📍Use My Location</button>
       <h4>or</h4>
       <div
@@ -81,6 +75,31 @@
         </div>
       </button>
     </div>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 2rem;
+        border-style: ridge;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 3rem 20rem;
+      "
+    >
+      <h2 style="font-family: monospace">
+        Step 2: Visible Satellites Overhead:
+      </h2>
+      <div class="satelliteContainer">
+        <div class="satelliteCards">
+          <div class="satellite-icon">🛰️</div>
+          <h3>Satellite Name</h3>
+          <p><strong>ID:</strong> 25544</p>
+          <p><strong>Altitude:</strong> 408 km</p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
 
@@ -93,11 +112,10 @@
     if (navigator.geolocation) {
       // Request the user's current position
       navigator.geolocation.getCurrentPosition(
-        // Success callback
         (position) => {
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
-          
+
           LatitudeInput.value = latitude;
           LongitudeInput.value = longitude;
         },
@@ -119,10 +137,9 @@
           }
           locationOutput.textContent = `Error: ${errorMessage}`;
         },
-        // Optional settings
         {
           enableHighAccuracy: true, // Use GPS for better accuracy
-          timeout: 5000, 
+          timeout: 5000,
           maximumAge: 0, // Don't use cached position
         }
       );
